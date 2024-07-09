@@ -8,11 +8,14 @@
     </template>
     <template #content>
       <div>
-        <ul>
+        <!-- <ul>
           <li v-for="track in tracks" :key="track.uuid">
             {{ track.title }} ({{ track.artist }})
           </li>
-        </ul>
+        </ul> -->
+        <Track 
+        v-for="track in tracks"
+        :key="track.uuid" :tracks="track"/>
       </div>
     </template>
   </MusicLayout>
@@ -20,11 +23,13 @@
 
 <script>
 import MusicLayout from '@/Layouts/MusicLayout.vue';
+import Track from '@/Components/Track/Track.vue';
 
 export default {
   name: 'Index',
   components: {
     MusicLayout,
+    Track,
   },
   props: {
     tracks: Array,

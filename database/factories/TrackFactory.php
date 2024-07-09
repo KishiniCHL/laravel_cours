@@ -22,7 +22,7 @@ class TrackFactory extends Factory
             'title' => $this->faker->sentence(3),
             'artist' => $this->faker->name(),
             'poster' => 'tracks/images/test.svg',
-            'music'=> 'tracks/music/test.mp3',
+            'music'=> 'tracks/musics/test_music.mp3',
             'display' => $this->faker->boolean(90),
             'play_count' => $this->faker->numberBetween(0, 2000),
         ];

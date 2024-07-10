@@ -55,14 +55,14 @@
       MusicLayout,
     },
     props: {
-      tracks: Object,
+      track: Object,
     },
     data() {
       return {
         form: this.$inertia.form( {
-          title: this.tracks.title,
-          artist: this.tracks.artist,
-          display: this.tracks.display ? true : false, 
+          title: this.track.title,
+          artist: this.track.artist,
+          display: this.track.display ? true : false, 
         }),
       };
   },

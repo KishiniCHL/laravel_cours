@@ -32,6 +32,7 @@ class TrackController extends Controller
                 'music' => ['required', 'file', 'mimes:mp3,wav', 'max:10000'],
             ]);
 
+
             $uuid = 'trk-' . Str::uuid();
 
             $imageExtension = $request->poster->extension();

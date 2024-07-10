@@ -73,7 +73,7 @@
   methods: {
     submitForm() {
       this.form.post(route('tracks.store'), {
-
+        onSuccess: () => this.$inertia.visit(route('tracks.index')),
       });},
   },
   }

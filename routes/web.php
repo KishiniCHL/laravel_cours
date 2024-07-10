@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TrackController;
+use App\Http\Controllers\PlaylistController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,5 +37,7 @@ Route::controller(TrackController::class)->prefix('tracks')->name('tracks.')->gr
     Route::put('/{track}', 'update')->name('update');
     Route::delete('/{track}', 'destroy')->name('destroy');
 });
+
+Route::resource('playlists', PlaylistController::class)->except(['show']);
 
 // Route::resource('tracks', TrackController::class)->except(['show']);

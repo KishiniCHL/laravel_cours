@@ -22,7 +22,6 @@
 <script>
 import MusicLayout from '@/Layouts/MusicLayout.vue';
 import Track from '@/Components/Track/Track.vue';
-import { Link } from '@inertiajs/vue3';
 
 export default {
   name: 'Index',

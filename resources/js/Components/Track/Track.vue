@@ -25,6 +25,10 @@
         name: 'Track',
         emits: ['play'],
         props: {
+            active: {
+            type: Boolean,
+            default: false,
+            },
             tracks: Object,
         },
         methods: {

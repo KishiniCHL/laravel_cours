@@ -18,7 +18,12 @@
 
             <input type="submit" class=" text-white font-bold px-6 py-3 cursor-pointer" :class="(form.processing ? 'bg-gray-500' : 'bg-blue-500')" value="Créer la playlist">
 
-            <p>{{ form }}</p>
+            <div v-for="track in tracks" :key="track.uuid">
+              <input :id="track.uuid" :value="track.uuid" v-model="form.tracks" type="checkbox" name="tracks">
+              <label :for="track.uuid">{{ track.title }}</label>
+            </div>
+
+            <p>{{ form.tracks }}</p>
         </form>
       </template>
     </MusicLayout>
@@ -32,17 +37,23 @@
     components: {
       MusicLayout,
     },
-    data(){
-      return{
-        form : this.$inertia.form({
-            title: '',
-        })	
-      }
+    props: {
+      playlists: Array,
+      tracks: Array,
     },
-    method:{
-        submitForm(){
-            console.log(this.form);
-        }
-    },
+    data() {
+    return {
+      form: this.$inertia.form( {
+        title: '',
+        tracks: [],
+      }),
+    };
+  },
+  methods: {
+    submitForm() {
+      this.form.post(route('playlists.store'), {
+        onSuccess: () => this.$inertia.visit(route('playlists.index')),
+      });},
+  },
   }
   </script>

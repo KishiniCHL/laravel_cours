@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Playlist;
+use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 
 class PlaylistController extends Controller
@@ -15,7 +18,9 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $playlists = Playlist::all();
+
+        $user = auth()->user();
+        $playlists = $user->playlists()->withCount(['tracks'])->get();
 
         return Inertia::render('Playlist/Index', [
             'playlists' => $playlists,
@@ -27,7 +32,11 @@ class PlaylistController extends Controller
      */
     public function create()
     {
-        // return
+        $tracks = Track::where('display', true)->orderBy('artist')->get();
+
+        return Inertia::render('Playlist/Create', [
+            'tracks' => $tracks,
+        ]);
     }
 
     /**
@@ -37,9 +46,32 @@ class PlaylistController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255', 'min:2'],
+            'tracks' => ['required', 'array'],
+            'tracks.*' => ['required', 'string', 'exists:tracks,uuid'],
         ]);
 
-        dd($request->all());
+        $tracks= Track::whereIn('uuid', $request->tracks)->where('display', true)->get();
+        if ($tracks->count() !== count($request->tracks)){
+            throw ValidationException::withMessages(['tracks' => 'Une musique n existe pas']);
+        }
+
+        $playlist = Playlist::create([
+            'uuid' => 'pla-' . Str::uuid(),
+            'user_id' => $request->user()->id,
+            'title' => $request->title,
+        ]);
+
+        $playlist->tracks()->attach($tracks->pluck('id'));
+
+        return redirect()->route('playlists.index');
+    }
+
+    public function show(Playlist $playlist){
+
+        return Inertia::render('Playlist/Show', [
+            'playlist' => $playlist, 
+            'tracks' => $playlist->tracks,
+        ]);
     }
 
     /**

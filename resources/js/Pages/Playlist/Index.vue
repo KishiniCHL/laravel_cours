@@ -7,31 +7,52 @@
       <Link :href="route('playlists.create')" class="bg-blue-500 text-white font-bold px-6 py-3">Créer une playlist</Link>
     </template>
     <template #content>
-      <div>
-        <input v-model="filter" type="search" class="shadow border rounded py-2 px-3 text-gray-700">
-        <div class="grid grid-cols-3 gap-4">
-        <Track 
-        v-for="track in filteredTracks"
-        :key="track.uuid" :tracks="track" @played="play"/>
-        </div>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Nombre de musiques</th>
+            <th>Créé le</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(playlist, i) in playlists" :key="playlist.uuid">
+            <td>{{ i + 1 }}</td>
+            <td>{{ playlist.title }}</td>
+            <td>{{ playlist.tracks_count }}</td>
+            <td>{{ $moment(playlist.created_at).format('DD/MM/YYYY') }}</td>
+            <td>
+              <Link :href="route('playlists.show', playlist.uuid)" class="bg-blue-500 text-white font-bold px-6 py-3">
+                Voir la playlist
+              </Link>
+            </td> 
+          </tr>
+        </tbody>
+      </table>
+      <!-- <ul>
+        <li v-for="playlist in playlists" :key="playlist.id">{{ playlist.title }}</li>
+      </ul> -->
     </template>
   </MusicLayout>
 </template>
 
 <script>
 import MusicLayout from '@/Layouts/MusicLayout.vue';
-import Track from '@/Components/Track/Track.vue';
-import { Link } from '@inertiajs/vue3';
+import TrackList from '@/Components/Track/TrackList.vue';
 
 export default {
   name: 'Index',
   components: {
     MusicLayout,
-    Track,
+    TrackList,
   },
   props: {
     playlists: Array,
+  },
+  mounted() {
+    console.log(this.playlists); 
   },
 }
 </script>

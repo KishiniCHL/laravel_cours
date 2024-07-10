@@ -4,18 +4,16 @@
       Liste de mes tracks
     </template>
     <template #action>
-      Ajouter une musique
+      <Link :href="route('tracks.create')" class="bg-blue-500 text-white font-bold px-6 py-3">Créer une musique</Link>
     </template>
     <template #content>
       <div>
-        <!-- <ul>
-          <li v-for="track in tracks" :key="track.uuid">
-            {{ track.title }} ({{ track.artist }})
-          </li>
-        </ul> -->
+        <input v-model="filter" type="search" class="shadow border rounded py-2 px-3 text-gray-700">
+        <div class="grid grid-cols-3 gap-4">
         <Track 
-        v-for="track in tracks"
+        v-for="track in filteredTracks"
         :key="track.uuid" :tracks="track" @played="play"/>
+        </div>
       </div>
     </template>
   </MusicLayout>
@@ -24,6 +22,7 @@
 <script>
 import MusicLayout from '@/Layouts/MusicLayout.vue';
 import Track from '@/Components/Track/Track.vue';
+import { Link } from '@inertiajs/vue3';
 
 export default {
   name: 'Index',
@@ -38,8 +37,17 @@ export default {
     return {
       audio: null,
       currentTrack: null,
+      filter: '',
     }
   },
+  computed: {
+  filteredTracks() {
+    return this.tracks.filter(track => 
+      track.title.toLowerCase().includes(this.filter.toLowerCase()) ||
+      track.artist.toLowerCase().includes(this.filter.toLowerCase())
+    );
+  }
+},
   methods :{
     play(track){
       const url = `storage/` + track.music;

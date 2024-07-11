@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <input v-model="filter" type="search" class="shadow border rounded py-2 px-3 text-gray-700">
-    <div>
-      <Track v-for="track in filteredTracks" :key="track.uuid" :tracks="track" @played="play" />
+  <div class="py-2 mx-20">
+    <div class="max-w-3xl	">
+      <input v-model="filter" type="search"
+        class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full mb-4">
+    </div>
+    <div class="flex flex-wrap -mx-2 justify-center sm:justify-start">
+      <div v-for="track in filteredTracks" :key="track.uuid" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
+        <Track :tracks="track" @played="play" />
+      </div>
     </div>
   </div>
 </template>

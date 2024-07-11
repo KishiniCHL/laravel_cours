@@ -16,8 +16,9 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->user()?->admin) {
-            return redirect()->back();
+            return redirect()->route('tracks.index');
         }
+
         return $next($request);
     }
 }

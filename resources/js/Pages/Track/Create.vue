@@ -4,11 +4,9 @@
         Créer musique
       </template>
       <template #action>
-        <Link :href="route('tracks.index')" class="bg-blue-500 text-white font-bold px-6 py-3">Retour</Link>
+        <Link :href="route('tracks.index')" class="bg-pink-700 hover:bg-white text-white hover:text-pink-700 border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-5 py-4 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3">Retour</Link>
       </template>
       <template #content>
-        formulaire de creation
-
         <form @submit.prevent="submitForm">
             <div class="mb-3">
               <label for="title">Title :</label>
@@ -38,7 +36,7 @@
             <input @input="form.music = $event.target.files[0]" type="file" id="music" name="music">
             </div>
 
-            <input type="submit" class=" text-white font-bold px-6 py-3 cursor-pointer" :class="(form.processing ? 'bg-gray-500' : 'bg-blue-500')" value="Créer la musique">
+            <input type="submit" :class="`text-white font-bold px-6 py-3 cursor-pointer ${form.processing ? 'bg-gray-500' : 'bg-pink-700 hover:bg-white'} border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-7 py-2 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3`" value="Créer la musique">
 
             <p>{{ form }}</p>
         </form>

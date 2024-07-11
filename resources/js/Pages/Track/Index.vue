@@ -1,18 +1,26 @@
 <template>
   <MusicLayout>
     <template #title>
-      Liste de mes tracks
+      <div class="pt-7 text-center sm:text-left ml-20">
+        Liste de mes tracks
+      </div>
     </template>
     <template #action>
-      <Link :href="route('tracks.create')" class="bg-blue-500 text-white font-bold px-6 py-3">Créer une musique</Link>
+      <div class="pt-7 flex justify-center sm:justify-start mr-20">
+        <Link :href="route('tracks.create')"
+          class="bg-pink-700 hover:bg-white text-white hover:text-pink-700 border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-5 py-4 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3">
+        Créer une musique</Link>
+      </div>
     </template>
     <template #content>
-      <div>
-        <input v-model="filter" type="search" class="shadow border rounded py-2 px-3 text-gray-700">
-        <div class="grid grid-cols-3 gap-4">
-        <Track 
-        v-for="track in filteredTracks"
-        :key="track.uuid" :tracks="track" @played="play"/>
+      <div class="py-2 mx-20">
+        <div class="max-w-3xl	">
+          <input v-model="filter" type="search" class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full mb-4">
+        </div>
+        <div class="flex flex-wrap -mx-2 justify-center sm:justify-start">
+          <div v-for="track in filteredTracks" :key="track.uuid" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
+            <Track :tracks="track" @played="play" />
+          </div>
         </div>
       </div>
     </template>
@@ -32,7 +40,7 @@ export default {
   props: {
     tracks: Array,
   },
-  data(){
+  data() {
     return {
       audio: null,
       currentTrack: null,
@@ -40,25 +48,25 @@ export default {
     }
   },
   computed: {
-  filteredTracks() {
-    return this.tracks.filter(track => 
-      track.title.toLowerCase().includes(this.filter.toLowerCase()) ||
-      track.artist.toLowerCase().includes(this.filter.toLowerCase())
-    );
-  }
-},
-  methods :{
-    play(track){
+    filteredTracks() {
+      return this.tracks.filter(track =>
+        track.title.toLowerCase().includes(this.filter.toLowerCase()) ||
+        track.artist.toLowerCase().includes(this.filter.toLowerCase())
+      );
+    }
+  },
+  methods: {
+    play(track) {
       const url = `storage/` + track.music;
       console.log(url);
 
-      if(! this.currentTrack){
+      if (!this.currentTrack) {
         this.audio = new Audio(url);
         this.audio.play();
-      } else if (this.currentTrack !== track.uuid){
-          this.audio.pause();
-          this.audio.src = url;
-          this.audio.play();
+      } else if (this.currentTrack !== track.uuid) {
+        this.audio.pause();
+        this.audio.src = url;
+        this.audio.play();
       } else {
         this.audio.paused ? this.audio.play() : this.audio.pause();
       }

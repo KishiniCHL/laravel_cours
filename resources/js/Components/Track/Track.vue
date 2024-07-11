@@ -1,21 +1,20 @@
 <template>
-    <div>
-        <div class="w-full h-1/2">
-            <!-- <img :src="'storage/' + tracks.image" alt=""> -->
-            <img :src="`storage/${tracks.poster}`" alt="">
-        </div>
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">{{ tracks.title }}</div>
-            <small class="text-grey-700 text-base">{{ tracks.artist }}</small>
-        </div>
-        <button class="bg-blue-500 py-2 px-6" @click="handleClick">Lire</button>
-        <div class="w-full">
-            <Link :href="route('tracks.edit', { track: tracks })"
-             class="bg-purple-500 text-white font-bold px-6 py-3">Edit</Link>
-        </div>
-        <div class="w-full">
-            <Link :href="route('tracks.destroy', { track: tracks })"
-             class="bg-pink-500 text-white font-bold px-6 py-3" as="button" methode="delete">Supprimer</Link>
+    <div class="mx-3 mt-7">
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full">
+                <img :src="`/storage/${tracks.poster}`" alt="" class="mb-3">
+                <div>
+                    <div class="font-bold text-xl mb-3">{{ tracks.title }}</div>
+                    <p class="text-grey-700 text-base mb-3">{{ tracks.artist }}</p>
+                </div>
+                <button class="bg-pink-700 hover:bg-white text-white hover:text-pink-700 border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-7 py-2 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3" @click="handleClick">Lire</button>
+                <div class="w-full">
+                    <Link v-if="$page.props.isAdmin" :href="route('tracks.edit', { track: tracks })" class="bg-purple-500 text-white font-bold px-6 py-3">Edit</Link>
+                </div>
+                <div class="w-full">
+                    <Link v-if="$page.props.isAdmin" :href="route('tracks.destroy', { track: tracks })" class="bg-pink-500 text-white font-bold px-6 py-3" as="button" methode="delete">Supprimer</Link>
+                </div>
+            </div>
         </div>
     </div>
 </template>

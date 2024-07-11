@@ -4,7 +4,7 @@
       Liste de mes playlists
     </template>
     <template #action>
-      <Link :href="route('playlists.create')" class="bg-blue-500 text-white font-bold px-6 py-3">Créer une playlist</Link>
+      <Link :href="route('playlists.create')" class="bg-pink-700 hover:bg-white text-white hover:text-pink-700 border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-5 py-4 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3">Créer une playlist</Link>
     </template>
     <template #content>
       <table>
@@ -24,7 +24,7 @@
             <td>{{ playlist.tracks_count }}</td>
             <td>{{ $moment(playlist.created_at).format('DD/MM/YYYY') }}</td>
             <td>
-              <Link :href="route('playlists.show', playlist.uuid)" class="bg-blue-500 text-white font-bold px-6 py-3">
+              <Link :href="route('playlists.show', playlist.uuid)" class="bg-pink-700 hover:bg-white text-white hover:text-pink-700 border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-5 py-4 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3">
                 Voir la playlist
               </Link>
             </td> 

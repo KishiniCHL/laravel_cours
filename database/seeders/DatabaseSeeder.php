@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test',
             'email' => 'test@example.com',
+            'admin' => true,
+            'password' => 'password',
         ]);
 
         Track::factory(50)->create();

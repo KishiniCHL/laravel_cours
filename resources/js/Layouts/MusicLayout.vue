@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="bg-pink-100">
+    <nav class="bg-pink-100 mb-7">
       <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
         <div class="relative flex h-20 items-center justify-between">
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -60,8 +60,8 @@
       </div>
     </nav>
 
-    <div class="px-16">
-      <div class="flex justify-between items-center">
+    <div class="px-32 flex flex-col items-center">
+      <div class="flex justify-between items-center w-full max-w-7xl ">
         <h4 class="text-3xl font-bold my-6">
           <slot name="title" />
         </h4>

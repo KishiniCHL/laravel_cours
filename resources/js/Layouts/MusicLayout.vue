@@ -14,7 +14,7 @@
                   :class="[route().current().includes('tracks') ? 'underline text-gray-500' : '']">
                 Musiques
                 </Link>
-                <Link :href="route('playlists.index')"
+                <Link  :href="route('playlists.index')"
                   class="rounded-md px-3 py-2 text-lm font-medium text-gray-500 hover:underline focus:underline"
                   :class="[route().current().includes('playlists') ? 'underline text-gray-500' : '']">
                 Playlists
@@ -22,7 +22,7 @@
 
                 <Link v-if="$page.props.auth.user" :href="route('api-keys.index')"
                   class="rounded-md px-3 py-2 text-lm font-medium text-gray-500 hover:underline focus:underline"
-                  :class="[route().current().includes('playlists/api') ? 'underline text-gray-500' : '']">
+                  :class="[route().current().includes('api-keys') ? 'underline text-gray-500' : '']">
                   Clés API
                 </Link>
               </div>

@@ -7,7 +7,6 @@ use App\Models\Track;
 use Exception;
 use Illuminate\Console\Command;
 
-
 class ClearPlayCount extends Command
 {
     /**
@@ -15,7 +14,7 @@ class ClearPlayCount extends Command
      *
      * @var string
      */
-    protected $signature = 'clear-play-count {my-argument} {--my-option1} {--my-option2=}';
+    protected $signature = 'clear-play-count {my-argument} {--my-option} {--my-option2=}';
 
     /**
      * The console command description.
@@ -30,15 +29,14 @@ class ClearPlayCount extends Command
     public function handle()
     {
         $this->info($this->argument('my-argument'));
-        $this->info($this->option('my-option1') ? 'Vrai' : 'Faux');
+        $this->info($this->option('my-option') ? 'Vrai' : 'Faux');
         $this->info($this->option('my-option2') ?? 'No option');
 
-        // try{
-        //     Track::where('play_count', '>', 0)->update(['play_count' => 0]);   
+        // try {
+        //     Track::where('play_count', '>', 0)->update(['play_count' => 0]);
         // } catch (Exception $e) {
-        //     return $this->fail('error occured');
+        //     return $this->fail('An error occured');
         // }
-
         JobsClearPlayCount::dispatch('my argument');
 
         $this->info('Tracks updated');

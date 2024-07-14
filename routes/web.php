@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\TrackController;
+use App\Http\Controllers\ApiKeyController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,9 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('playlists', PlaylistController::class);
+
+    Route::resource('api-keys', ApiKeyController::class)->except(['edit', 'update']);
+
 
     Route::controller(TrackController::class)
         ->prefix('tracks')

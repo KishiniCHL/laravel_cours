@@ -19,7 +19,7 @@ class ClearPlayCount implements ShouldQueue
     public function __construct(
         private string $argument)
     {
-        //
+        $this->onQueue('mails')
     }
 
     /**
@@ -27,6 +27,7 @@ class ClearPlayCount implements ShouldQueue
      */
     public function handle(): void
     {
+        $this->argument;
         Track::where('play_count', '>', 0)->update(['play_count' => 0]);
     }
 }

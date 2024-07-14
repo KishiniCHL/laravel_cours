@@ -2,7 +2,7 @@
   <MusicLayout>
     <template #title>
       <!-- {{ $page.props.auth.user.admin }} -->
-      {{ $page.props.isAdmin }}
+      <!-- {{ $page.props.isAdmin }} -->
       <div class="pt-7 text-center sm:text-left ml-20">
         Liste de mes tracks
       </div>

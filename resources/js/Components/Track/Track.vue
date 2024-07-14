@@ -15,7 +15,7 @@
                     @click="handleClick">Lire</button>
             </div>
             <div v-if="$page.props.isAdmin">
-                <div class="flex"> <!-- Flex container for Modifier and Supprimer buttons -->
+                <div class="flex"> 
                     <Link :href="route('tracks.edit', { track: tracks })"
                         class="bg-purple-700 hover:bg-white text-white hover:text-purple-700 border border-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-m px-7 py-2 text-center me-2 mb-2 dark:border-purple-400 dark:bg-purple-400 dark:text-white dark:hover:bg-white dark:hover:text-purple-500 dark:focus:ring-purple-900 mr-3">
                     Modifier

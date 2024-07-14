@@ -13,7 +13,7 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('playlists', PlaylistController::class);
 
-    Route::resource('api-keys', ApiKeyController::class)->except(['edit', 'update']);
+    Route::resource('api-keys', ApiKeyController::class)->except(['edit','show', 'update']);
 
 
     Route::controller(TrackController::class)

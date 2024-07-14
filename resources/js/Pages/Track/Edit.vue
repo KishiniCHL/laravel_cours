@@ -4,7 +4,7 @@
         Modifier une musique
       </template>
       <template #action>
-        <Link :href="route('tracks.index')" class="bg-blue-500 text-white font-bold px-6 py-3">Retour</Link>
+        <Link :href="route('tracks.index')" class="bg-pink-700 hover:bg-white text-white hover:text-pink-700 border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-5 py-4 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3">Retour</Link>
       </template>
       <template #content>
 
@@ -37,8 +37,7 @@
             <input @input="form.music = $event.target.files[0]" type="file" id="music" name="music">
             </div> -->
 
-            <input type="submit" value="Modifier la musique" class=" text-white font-bold rounded py-2 px-4"
-          :class="[form.processing ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700']" :disabled="form.processing">
+            <input type="submit" value="Modifier la musique" :class="`text-white font-bold px-6 py-3 cursor-pointer ${form.processing ? 'bg-gray-500' : 'bg-pink-700 hover:bg-white'} border border-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-m px-7 py-2 text-center me-2 mb-2 dark:border-pink-400 dark:bg-pink-400 dark:text-white dark:hover:bg-white dark:hover:text-pink-500 dark:focus:ring-pink-900 mr-3`">
 
             <p>{{ form }}</p>
         </form>
@@ -68,9 +67,8 @@
   },
   methods: {
     submitForm() {
-      this.form.put(route('tracks.update', { track: this.track}), {
-
-      });},
+      this.form.put(route('tracks.update', { track: this.track}))
+    }
   },
   }
   </script>

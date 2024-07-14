@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TrackController::class, 'index'])->name('tracks.index');
 Route::get('/test', [HomeController::class, 'test'])->name('test');
 
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('playlists', PlaylistController::class);
 
